@@ -38,7 +38,7 @@ public class RabbitMQConfiguration {
      */
     @Bean
     Queue queue() {
-        return new Queue(properties.getChatQueueName(), false);
+        return new Queue(properties.getChatQueueName(), true);
     }
 
 
@@ -51,10 +51,7 @@ public class RabbitMQConfiguration {
     Binding binding() {
 
 
-        Binding binding = BindingBuilder.bind(queue()).to(exchange()).with(properties.getChatRoutingKey());
-
-
-        return binding;
+        return BindingBuilder.bind(queue()).to(exchange()).with(properties.getChatRoutingKey());
     }
 
 
